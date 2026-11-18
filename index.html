@@ -1,39 +1,106 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-    <title>Product Management</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#172f45">
+  <meta name="description" content="Shop a curated selection of everyday tech, home and lifestyle essentials.">
+  <title>Shopwell — Everyday finds, thoughtfully picked</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
 </head>
 <body>
+  <div class="announcement">A little something for your everyday <span>•</span> Free delivery on orders over ₹1,499</div>
+  <header class="main-header">
+    <a class="brand" href="#" aria-label="Shopwell home">shopwell<span>.</span></a>
+    <form class="search" id="searchForm" role="search">
+      <label class="sr-only" for="searchInput">Search products</label>
+      <input id="searchInput" type="search" placeholder="Search for anything you love..." autocomplete="off">
+      <button type="submit" aria-label="Search">⌕</button>
+    </form>
+    <div class="header-actions">
+      <button class="account-button" type="button" aria-label="Account">♡ <span>Saved</span></button>
+      <button class="cart-button" id="openCart" type="button" aria-label="Open cart">
+        <span class="cart-icon" aria-hidden="true">▱</span><span class="cart-label">Cart</span><span class="cart-count" id="cartCount">0</span>
+      </button>
+    </div>
+  </header>
+  <nav class="category-nav" aria-label="Shop departments">
+    <span class="nav-caption">SHOP BY</span>
+    <a href="#products" data-nav-category="All">All finds</a>
+    <a href="#products" data-nav-category="Tech">Tech</a>
+    <a href="#products" data-nav-category="Home">Home</a>
+    <a href="#products" data-nav-category="Style">Style</a>
+    <a href="#products" data-nav-category="Everyday">Everyday</a>
+    <span class="nav-note">Good things, picked for you <span aria-hidden="true">✳</span></span>
+  </nav>
 
-    <h1>Product Management System</h1>
+  <main>
+    <section class="hero" aria-label="Featured collection">
+      <div class="hero-copy">
+        <p class="eyebrow"><span></span> THE EVERYDAY EDIT</p>
+        <h1>Find your<br>next <em>favourite.</em></h1>
+        <p>Useful little upgrades. Feel-good essentials. All in one happy place.</p>
+        <a class="hero-link" href="#products">Explore the collection <span aria-hidden="true">↘</span></a>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <div class="sun-disc"></div>
+        <div class="hero-orbit orbit-a"></div><div class="hero-orbit orbit-b"></div>
+        <div class="hero-bag">✳</div>
+        <span class="hero-sticker">GOOD<br>CHOICES<br>LIVE HERE</span>
+      </div>
+      <div class="hero-index">01 <span>/</span> 04</div>
+    </section>
 
-    <h2>Add Product</h2>
+    <section class="shop-section" id="products">
+      <div class="section-top">
+        <div><p class="eyebrow">A CURATED LITTLE CORNER</p><h2>Popular right now</h2></div>
+        <p class="results-note" id="resultsNote">Thoughtful finds for everyday life</p>
+      </div>
+      <div class="shop-controls">
+        <div class="filter-list" id="filters" role="group" aria-label="Filter products by category">
+          <button class="filter-chip active" data-category="All" type="button">Everything</button>
+          <button class="filter-chip" data-category="Tech" type="button">Tech</button>
+          <button class="filter-chip" data-category="Home" type="button">Home</button>
+          <button class="filter-chip" data-category="Style" type="button">Style</button>
+          <button class="filter-chip" data-category="Everyday" type="button">Everyday</button>
+        </div>
+        <label class="sort-label" for="sortSelect">Sort by
+          <select id="sortSelect">
+            <option value="featured">Featured</option>
+            <option value="price-low">Price: low to high</option>
+            <option value="price-high">Price: high to low</option>
+            <option value="rating">Top rated</option>
+          </select>
+        </label>
+      </div>
+      <div class="product-grid" id="productGrid" aria-live="polite"></div>
+      <div class="empty-state" id="emptyState" hidden><span>⌕</span><h3>No finds just yet</h3><p>Try a different search or browse all products.</p><button type="button" id="clearSearch">Show everything</button></div>
+    </section>
+    <section class="promise-strip">
+      <div><span class="promise-icon">↗</span><p><strong>Free delivery</strong><br>On orders over ₹1,499</p></div>
+      <div><span class="promise-icon">♡</span><p><strong>Picked with care</strong><br>Everyday things, made better</p></div>
+      <div><span class="promise-icon">⌁</span><p><strong>Easy returns</strong><br>Because plans can change</p></div>
+    </section>
+  </main>
 
-    <input type="text" id="name" placeholder="Product Name">
-    <input type="text" id="category" placeholder="Category">
-    <input type="number" id="price" placeholder="Price">
-    <input type="number" id="quantity" placeholder="Quantity">
+  <footer><a class="brand" href="#">shopwell<span>.</span></a><p>A shopping demo made for discovering good things.</p><span>Prices shown in INR ₹</span></footer>
 
-    <button onclick="addProduct()">Add Product</button>
-
-    <h2>Product List</h2>
-
-    <table>
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Category</th>
-                <th>Price</th>
-                <th>Quantity</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-
-        <tbody id="productList"></tbody>
-    </table>
-
-    <script src="script.js"></script>
-
+  <div class="drawer-backdrop" id="drawerBackdrop" hidden></div>
+  <aside class="cart-drawer" id="cartDrawer" aria-labelledby="cartTitle" aria-modal="true" role="dialog" aria-hidden="true">
+    <div class="drawer-head"><div><p class="eyebrow">YOUR LITTLE HAUL</p><h2 id="cartTitle">Shopping cart <span id="drawerItemCount">(0)</span></h2></div><button class="close-drawer" id="closeCart" type="button" aria-label="Close cart">×</button></div>
+    <div class="cart-items" id="cartItems"></div>
+    <div class="cart-empty" id="cartEmpty"><span>▱</span><h3>Your cart is taking a nap</h3><p>Add a few things you love and they’ll show up here.</p></div>
+    <div class="drawer-bottom" id="drawerBottom" hidden>
+      <div class="subtotal"><span>Subtotal</span><strong id="cartSubtotal">₹0</strong></div>
+      <p class="shipping-note">Shipping and discounts are calculated at checkout.</p>
+      <button class="checkout-button" id="checkoutButton" type="button">Continue to checkout <span>→</span></button>
+      <p class="demo-note">Demo checkout · no payment will be collected</p>
+    </div>
+  </aside>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
 </body>
 </html>
